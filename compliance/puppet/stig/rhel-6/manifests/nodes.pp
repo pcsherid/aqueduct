@@ -14,9 +14,9 @@ class shared (	$server = false,
 		$syslogserver = false,
 		$yumcanary = false ) {
 
-	$dnsservers = "10.10.10.1"
-	$gateway = "10.10.10.1"
-	$syslogserver_ip = "10.10.10.1"
+	$dnsservers = "10.100.0.2"
+	$gateway = "10.100.0.1"
+	$syslogserver_ip = "10.100.3.14"
 
 	$sudoers = "%admins  ALL=(ALL)       ALL"
 	#$nfs_server_fqdn = "fileserver.domain.com"
@@ -44,6 +44,15 @@ class shared (	$server = false,
 	class { "sudo": }
 	class { "sysctl": }
 	class { "yum": }
+}
+
+node 'aqueduct.archnet.mil' {
+	class { "shared":
+			server		=> true,
+			needs_gnome	=> false,
+			needs_x11	=> false,
+			puppetserver	=> true,
+	}
 }
 
 # LDAP/Kerberos
