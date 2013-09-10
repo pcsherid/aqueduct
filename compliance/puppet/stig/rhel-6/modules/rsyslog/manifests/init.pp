@@ -89,11 +89,11 @@ class logwatch {
 			command => "/bin/sed -i '$a HostLimit = No' /etc/logwatch/conf/logwatch.conf",
 			onlyif  => "/usr/bin/test `grep HostLimit /etc/logwatch/conf/logwatch.conf | wc -l` -eq 0";
 		"Configure Logwatch HostLimit Line":
-			command => "/bin/sed -i 's/HostLimit[ \t]*=[ \t]*Yes/HostLimit = No/g' /etc/logwatch/conf/logwatch.conf"
+			command => "/bin/sed -i 's/HostLimit[ \t]*=[ \t]*Yes/HostLimit = No/g' /etc/logwatch/conf/logwatch.conf";
 		"Add Missing Logwatch SplitHosts Line":
 			command => "/bin/sed -i '$a SplitHosts = Yes' /etc/logwatch/conf/logwatch.conf",
 			onlyif  => "/usr/bin/test `grep SplitHosts /etc/logwatch/conf/logwatch.conf | wc -l` -eq 0";
 		"Configure Logwatch SplitHosts Line":
-			command => "/bin/sed -i 's/SplitHosts[ \t]*=[ \t]*No/SplitHosts = Yes/g' /etc/logwatch/conf/logwatch.conf"
+			command => "/bin/sed -i 's/SplitHosts[ \t]*=[ \t]*No/SplitHosts = Yes/g' /etc/logwatch/conf/logwatch.conf";
 	}
 }
