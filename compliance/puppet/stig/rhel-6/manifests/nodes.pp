@@ -15,7 +15,7 @@ class shared (	$server = false,
 		$yumcanary = false ) {
 
 	$dnsservers = "10.100.0.2"
-	$gateway = "10.100.0.1"
+	$gateway = "10.1.50.1"
 	$syslogserver_ip = "10.100.3.14"
 
 	$sudoers = "%admins  ALL=(ALL)       ALL"
@@ -30,7 +30,9 @@ class shared (	$server = false,
 	class { "init": }
 	class { "iptables": }
 	class { "kernel": }
-	class { "named": }
+	if $dnsserver {
+		class { "named": }
+	}
 	class { "networking": }
 	#class { "nfs": nfs_server_fqdn => $nfs_server_fqdn; }
 	class { "ntp": }
