@@ -29,17 +29,49 @@ class packages {
 		]:
 			ensure  => installed,
 			require => Class["yum"];
-
+	}
+	package {
 		[
-			"bind", # if named must be enabled, follow prose guide instructions for configuration
 			"cronie-anacron",
 			"dhcp", # if dhcp must be enabled, follow prose guide instructions for configuration
-			"sendmail",
-			"vsftpd", # if vsftpd must be enabled, uncomment the following vsftpd section
 		]:
 			ensure  => absent,
 			require => Class["yum"];
 	}
+
+	if !$shared::dnsserver {
+		package {
+			[
+				"bind", # if named must be enabled, follow prose guide instructions for configuration
+			]:
+				ensure  => absent,
+				require => Class["yum"];
+		}
+	}
+
+	if !$shared::mailserver {
+		package {
+
+			[
+				"sendmail",
+			]:
+				ensure  => absent,
+				require => Class["yum"];
+		}
+	}
+
+	if !$shared::ftpserver {
+		package {
+
+			[
+				"vsftpd", # if vsftpd must be enabled, uncomment the following vsftpd section
+			]:
+				ensure  => absent,
+				require => Class["yum"];
+		}
+	}
+
+	
 
 	if !$shared::needs_x11 {
 		package {
