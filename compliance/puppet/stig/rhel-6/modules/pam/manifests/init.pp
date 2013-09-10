@@ -43,7 +43,7 @@ class pam {
 		"Limit the Number of Concurrent Login Sessions Allowed Per User":
 			context => "/files/etc/security/limits.conf",
 			changes => [
-				"rm domain[.='*'][./type='hard and ./item='maxlogins']",
+				"rm domain[.='*'][./type='hard' and ./item='maxlogins']",
 				"set domain[last() + 1] '*'",
 				"set domain[last()]/type 'hard'",
 				"set domain[last()]/item 'maxlogins'",
