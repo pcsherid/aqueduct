@@ -48,7 +48,8 @@ class pam {
 				"set domain[last()]/type 'hard'",
 				"set domain[last()]/item 'maxlogins'",
 				"set domain[last()]/value 10",
-			];
+			],
+		onlyif => "match domain[.='*'][./type='hard'][./item='maxlogins'][./value='10'] size == 0";
 		# This feels like a bug in SSG
 		#"Prevent Log In to Accounts With Empty Password":
 		#	context => "/files/etc/pam.d/system-auth",
