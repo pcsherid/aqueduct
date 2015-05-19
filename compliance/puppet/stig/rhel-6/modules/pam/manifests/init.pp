@@ -148,6 +148,7 @@ class pam {
 
 	exec {
 		"Set Password Hashing Algorithm in /etc/libuser.conf":
-			command => "/bin/sed -i 's/crypt_style[ \t]*=[ \t]*md5/crypt_style = sha512/g' /etc/libuser.conf";
+			command => "/bin/sed -i 's/crypt_style[ \t]*=[ \t]*md5/crypt_style = sha512/g' /etc/libuser.conf",
+			onlyif  => "/usr/bin/test `/bin/egrep -i 'crypt_style = sha512' /etc/libuser.conf | /usr/bin/wc -l` -ne 1";
 	}
 }
