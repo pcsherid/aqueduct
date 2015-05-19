@@ -48,7 +48,7 @@ class kernel {
 				"set domain[last()]/item 'core'",
 				"set domain[last()]/value 0",
 			],
-		onlyif => "match domain[.='*'][./type='hard'][./item='core'][./value='0'] size == 0";
+			onlyif => "match domain[.='*'][./type='hard'][./item='core'][./value='0'] size == 0";
 		"Ensure SELinux State is Enforcing":
 			context => "/files/etc/selinux/config",
 			lens    => "shellvars.lns",
